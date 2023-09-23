@@ -1,4 +1,6 @@
 mod args;
+mod token;
+mod analyzer;
 
 
 use std::process::ExitCode;
@@ -7,6 +9,8 @@ use clap::Parser;
 
 fn main() -> ExitCode{
     let args = Arg::parse();
-    println!("{}", std::fs::read_to_string(args.path).unwrap());
+    let codes = std::fs::read_to_string(args.path).unwrap();
+    analyzer::Analyzer::new(&codes);
+
     ExitCode::SUCCESS
 }
