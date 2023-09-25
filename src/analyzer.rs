@@ -1,4 +1,5 @@
 use std::{collections::HashMap, sync::Mutex, io::Write};
+use regex::Regex;
 use lazy_static::lazy_static;
 use colorfully::*;
 
@@ -31,6 +32,14 @@ impl<'a> Analyzer<'a> {
         let mut var_name = "";
         for code in codes {
             line += 1;
+
+
+            // TODO: make var
+            if code.contains("var") {
+                let re: Regex = Regex::new(r"var\((?<code>\d.*)\)").unwrap();
+                println!("{:?}", &re.captures(code).unwrap()["code"]);
+            }
+
             if code == "=" { var_name = last_code }
             if last_code == "=" {
                 let token = Token::parse(code, &VAR);

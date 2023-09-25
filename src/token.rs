@@ -1,5 +1,5 @@
 use std::{collections::HashMap, sync::Mutex};
-
+use eval::{eval, to_value};
 #[derive(Debug)]
 pub enum Token{
     Error(String),
@@ -20,9 +20,9 @@ impl Token {
         }
         match chars[0]{
             '0'..='9' | '-' => {
-                let n = ident.parse::<isize>();
+                let n = eval(&ident);
                 if let Ok(n) = n{
-                    Self::Int(n)
+                    Self::Int(n.to_string().parse().unwrap())
                 }else{
                     Self::Error(format!("{:?} is not int!!", ident))
                 }

@@ -1,11 +1,3 @@
-a = 1234
-print "a:\ "
-println a
-
-b = "cdefu\ &urmom"
-print "b:\ "
+a = 1
+b = var(a)+2
 println b
-
-c = true
-print "c:\ "
-println c
