@@ -13,7 +13,7 @@ pub enum Token{
 
 impl Token {
     pub fn parse(ident: &str, var: &Mutex<HashMap<String, Self>>) -> Self {
-        let ident = &ident.replace("%20", " ");
+        let ident = &ident.replace("%20", " ").trim().to_string();
         let chars = ident.chars().collect::<Vec<char>>();
         if ident == "true" || ident == "false" {
             return Self::Bool(ident.parse().unwrap())
@@ -24,7 +24,7 @@ impl Token {
                 if let Ok(n) = n{
                     Self::Int(n)
                 }else{
-                    Self::Error("is not int!!".to_string())
+                    Self::Error(format!("{:?} is not int!!", ident))
                 }
             }
             '"' => {
