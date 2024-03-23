@@ -10,4 +10,4 @@ clap = { version = "4.4.6", features = ["derive"] }
 colorfully = "0.2.2"
 eval = "0.4.3"
 lazy_static = "1.4.0"
-regex = "1.9.5"
+regex = "1.10.4"
